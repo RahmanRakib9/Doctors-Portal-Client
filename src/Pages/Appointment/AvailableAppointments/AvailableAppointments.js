@@ -44,15 +44,16 @@ const bookings = [
 ]
 
 
-const AvailableAppointments = ({ date, setDate }) => {
+const AvailableAppointments = ({ date }) => {
      return (
           <Container>
-               <Typography variant='h4' component='div' sx={{color:'info.main',mb:3}}>Appointment Available on {date.toDateString()}</Typography>
+               <Typography variant='h4' component='div' sx={{ color: 'info.main', mb: 3 }}>Appointment Available on {date.toDateString()}</Typography>
                <Grid container spacing={2}>
                     {
                          bookings.map(booking => <Booking
                               key={booking.id}
                               booking={booking}
+                              date={date}
                          ></Booking>)
                     }
                </Grid>
