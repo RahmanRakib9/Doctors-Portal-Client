@@ -13,7 +13,7 @@ const Register = () => {
      const navigate = useNavigate();
      const location = useLocation();
 
-     const handleOnchange = e => {
+     const handleOnBlur = e => {
           const field = e.target.name;
           const value = e.target.value;
           const newLoginData = { ...loginData };
@@ -28,7 +28,7 @@ const Register = () => {
                alert('Your Password Did Not Match')
                return
           }
-          registerUser(loginData.email, loginData.password, location, navigate)
+          registerUser(loginData.name, loginData.email, loginData.password, location, navigate)
           e.preventDefault();
      }
      return (
@@ -40,11 +40,20 @@ const Register = () => {
                               <TextField
                                    sx={{ width: 1, m: 1 }}
                                    id="standard-basic"
+                                   type='text'
+                                   label="Your Name"
+                                   variant="standard"
+                                   name='name'
+                                   onBlur={handleOnBlur}
+                              />
+                              <TextField
+                                   sx={{ width: 1, m: 1 }}
+                                   id="standard-basic"
                                    type='email'
                                    label="Your Email"
                                    variant="standard"
                                    name='email'
-                                   onChange={handleOnchange}
+                                   onBlur={handleOnBlur}
                               />
                               <TextField
                                    sx={{ width: 1, m: 1 }}
@@ -54,7 +63,7 @@ const Register = () => {
                                    autoComplete="current-password"
                                    variant="standard"
                                    name='password'
-                                   onChange={handleOnchange}
+                                   onBlur={handleOnBlur}
                               />
                               <TextField
                                    sx={{ width: 1, m: 1 }}
@@ -64,7 +73,7 @@ const Register = () => {
                                    autoComplete="current-password"
                                    variant="standard"
                                    name='password2'
-                                   onChange={handleOnchange}
+                                   onBlur={handleOnBlur}
                               />
                               <Button variant='contained' type='submit' sx={{ width: 1, m: 1 }}>REGISTER</Button>
                               <Link

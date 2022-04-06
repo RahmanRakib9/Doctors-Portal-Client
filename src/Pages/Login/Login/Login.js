@@ -7,7 +7,7 @@ import useAuth from '../../../hooks/useAuth'
 
 const Login = () => {
      const [loginData, setLoginData] = useState({});
-     const { user, authError, loginUser, isLoading } = useAuth();
+     const { user, authError, loginUser, isLoading, signInWithGoogle } = useAuth();
 
      //for redirect user destination
      const navigate = useNavigate();
@@ -26,6 +26,13 @@ const Login = () => {
           loginUser(loginData.email, loginData.password, location, navigate)
           e.preventDefault();
      }
+
+
+     const handleGoogleSignIn = () => {
+          signInWithGoogle(location, navigate)
+
+     }
+
      return (
           <Container>
                <Grid container spacing={3}>
@@ -38,7 +45,7 @@ const Login = () => {
                                    label="Your Email"
                                    variant="standard"
                                    name='email'
-                                   onChange={handleOnchange}
+                                   onBlur={handleOnchange}
                               />
                               <TextField
                                    sx={{ width: 1, m: 1 }}
@@ -48,7 +55,7 @@ const Login = () => {
                                    autoComplete="current-password"
                                    variant="standard"
                                    name='password'
-                                   onChange={handleOnchange}
+                                   onBlur={handleOnchange}
                               />
                               <Button variant='contained' type='submit' sx={{ width: 1, m: 1 }}>Login</Button>
                               <Link
@@ -57,6 +64,11 @@ const Login = () => {
                                    <Button variant="text">New User?Please Register</Button>
                               </Link>
                          </form>
+
+                         {/* google sign in */}
+                         <p>--------------------</p>
+                         <small>OR</small><br />
+                         <Button onClick={handleGoogleSignIn} variant='contained'>Google Sign In</Button>
 
                          {isLoading && <CircularProgress />}
 
